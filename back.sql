@@ -14,11 +14,16 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table back.comment : ~0 rows (environ)
+DELETE FROM `comment`;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table back.publication : ~0 rows (environ)
+DELETE FROM `publication`;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table back.user : ~1 rows (environ)
+DELETE FROM `user`;
+INSERT INTO `user` (`id_user`, `nom`, `prenom`, `localisation`, `cin`, `lieu_concerne`, `surete`) VALUES
+	(1, 'rakotohasimbola', 'jenny', '10,-10', '123456789', 'tana,mada,exemple', 0);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

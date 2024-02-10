@@ -1,5 +1,5 @@
 const express = require('express')
-const donne = require('./database.js');
+const donne = require('./Entite/client.js');
 require('dotenv').config()
 const PORT = process.env.PORT || 4000
 const app = express()
@@ -9,7 +9,7 @@ const app = express()
 
 app.get('/api/bonjour', async (req, res) => {
     try {
-        const data = await donne(); // Appeler la fonction donne dans votre route
+        const data = await donne; // Appeler la fonction donne dans votre route
         res.json(data);
     } catch (error) {
         console.error("Erreur lors de la récupération des données :", error);
