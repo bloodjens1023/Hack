@@ -1,0 +1,3 @@
+# Ignore les répertoires node_modules
+node_modules/
+# Autres fichiers/dossiers à ignorer

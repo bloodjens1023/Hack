@@ -1,0 +1,4 @@
+# Ignore les répertoires node_modules et build
+node_modules/
+build/
+# Autres fichiers/dossiers à ignorer
