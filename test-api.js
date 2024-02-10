@@ -1,7 +1,7 @@
 const opencage = require('opencage-api-client');
 
 opencage
-  .geocode({ q: '37.4396, -122.1864', language: 'fr' })
+  .geocode({ q: '-18.8666397, 47.5320737', language: 'fr' })
   .then((data) => {
     // console.log(JSON.stringify(data));
     if (data.status.code === 200 && data.results.length > 0) {
