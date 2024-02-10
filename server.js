@@ -1,5 +1,5 @@
 const express = require('express')
-const donne = require('./database.js')
+const donne = require('./database.js');
 require('dotenv').config()
 const PORT = process.env.PORT || 4000
 const app = express()
@@ -16,29 +16,21 @@ const pool = mysql.createPool({
 }).promise()
 
 // Utilisez la fonction asynchrone pour pouvoir utiliser await
-async function donne() {
+
+app.get('/api/bonjour', async (req, res) => {
     try {
-        const [rows, fields] = await pool.query("SELECT * FROM notes")
-        return rows
+        const data = await donne(); // Appeler la fonction donne dans votre route
+        res.json(data);
     } catch (error) {
-        console.error("Erreur lors de l'exécution de la requête :", error)
-        return null
-    } finally {
-        // Assurez-vous de libérer la piscine après utilisation
-        pool.end()
+        console.error("Erreur lors de la récupération des données :", error);
+        res.status(500).json({ error: "Une erreur s'est produite lors de la récupération des données." });
     }
-}
-
-
-
-app.use(express.json())
-
-app.get("/api/bonjour", (_, res) => {
-    res.send(donne())
-})
+});
 
 
 
 app.listen(PORT, () => {
     console.log(`le serveur est sur ${PORT}`)
 })
+
+
