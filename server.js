@@ -6,7 +6,12 @@ require('dotenv').config();
 const PORT = process.env.PORT || 4000;
 const app = express();
 
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
 let cl = new Client()
+
 
 app.get('/api/bonjour', async (req, res) => {
     try {
@@ -28,17 +33,27 @@ app.get('/api/auth', async (req, res) => {
     }
 });
 
-app.get('/api/inscr', async (req, res) => {
+
+app.post('/api/inscription', async (req, res) => {
+    try {
+        const us = req.body;
+        const data = await cl.insert_user(us); // Appeler la fonction donne dans votre route
+        res.json(data);
+    } catch (error) {
+        console.error("Erreur lors de la récupération des données :", error);
+        res.status(500).json({ error: "Une erreur s'est produite lors de la récupération des données." });
+    }
+});
+
+app.get('/api/connection', async (req, res) => {
     try {
         const us = {
-            'nom': "jenny",
-            'prenom': "jenny",
-            'cin': "12344",
-            'localisation': "jenny",
-            'lieu_concerne': "jenny",
-            'surete': 0,
+            'pseudo': "jenny",
+            'mot_de_passe': "",
+
         }
-        const data = await cl.insert_user(us); // Appeler la fonction donne dans votre route
+        const data = await cl.authentification_user(us);
+        console.log(data) // Appeler la fonction donne dans votre route
         res.json(data);
     } catch (error) {
         console.error("Erreur lors de la récupération des données :", error);
