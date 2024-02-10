@@ -1,17 +1,13 @@
-import React, { useState } from "react"
+import 'bootstrap/dist/css/bootstrap.min.css';
 export default function Accueil() {
-    const [hello, setHello] = useState("")
-    const handleClick = async () => {
-        const data = await window.fetch('/api/bonjour')
-        const json = await data.json()
-        console.log(json)
 
-        setHello(json["msg"])
-    }
     return (
         <div>
-            <p>{hello}</p>
-            <button onClick={handleClick}>cliquer ici</button>
+            <div class="row">
+                <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+                <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+                <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+            </div>
         </div>
     )
 }
