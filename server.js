@@ -5,16 +5,6 @@ const PORT = process.env.PORT || 4000
 const app = express()
 
 
-
-const mysql = require('mysql2')
-
-const pool = mysql.createPool({
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'notes_app'
-}).promise()
-
 // Utilisez la fonction asynchrone pour pouvoir utiliser await
 
 app.get('/api/bonjour', async (req, res) => {
