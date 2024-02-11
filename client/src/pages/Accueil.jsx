@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Header from '../components/Header';
 
 function SignUpPage() {
     const [formData, setFormData] = useState({
@@ -50,6 +51,8 @@ function SignUpPage() {
 
     return (
         <div>
+
+            <Header />
             <h2>Inscription</h2>
             <form onSubmit={handleSubmit}>
                 <label>

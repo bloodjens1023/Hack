@@ -10,6 +10,7 @@ function SignUpPage() {
         pseudo: '',
         mot_de_passe: ''
     });
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -30,7 +31,7 @@ function SignUpPage() {
                 body: JSON.stringify(formData)
             });
             if (!response.ok) {
-                throw new Error('Erreur lors de l\'inscription');
+                throw new Error('Échec de l\'inscription');
             }
             console.log('Utilisateur inscrit avec succès !');
             // Réinitialiser le formulaire après la soumission
@@ -43,15 +44,19 @@ function SignUpPage() {
                 pseudo: '',
                 mot_de_passe: ''
             });
+            setError(''); // Réinitialiser les erreurs
         } catch (error) {
             console.error('Erreur:', error);
+            setError('Une erreur s\'est produite lors de l\'inscription'); // Afficher le message d'erreur
         }
     };
+
 
     return (
         <div>
             <h2>Inscription</h2>
             <form onSubmit={handleSubmit}>
+                {error && <div style={{ color: 'red' }}>{error}</div>}
                 <label>
                     Nom:
                     <input
@@ -121,5 +126,3 @@ function SignUpPage() {
     );
 
 }
-
-export default SignUpPage;

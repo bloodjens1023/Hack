@@ -45,16 +45,17 @@ app.post('/api/inscription', async (req, res) => {
     }
 });
 
-app.get('/api/connection', async (req, res) => {
+app.post('/api/connection', async (req, res) => {
     try {
-        const us = {
-            'pseudo': "jenny",
-            'mot_de_passe': "",
-
-        }
+        const us = req.body;
         const data = await cl.authentification_user(us);
-        console.log(data) // Appeler la fonction donne dans votre route
-        res.json(data);
+        if (data) {
+            res.status(200).json({ success: "Utilisateur connecté avec succès !" });
+        } else {
+            res.status(401).json({ error: "Identifiant ou mot de passe incorrect." });
+        }
+
+
     } catch (error) {
         console.error("Erreur lors de la récupération des données :", error);
         res.status(500).json({ error: "Une erreur s'est produite lors de la récupération des données." });
