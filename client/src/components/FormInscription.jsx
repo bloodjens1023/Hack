@@ -5,16 +5,18 @@ import { motion } from "framer-motion";
 import opencage from "opencage-api-client"; // Importez le module correctement
 
 export default function FormInscription() {
+    const [cityName, setCityName] = useState('');
     const [afficheMap, setAfficheMap] = useState(false);
-    const [inputValue, setInputValue] = useState('');
-    const apiKey = "aabad226ab52a9a2f0c635d062936c13";
+    const [coordinates, setCoordinates] = useState({});
 
-    const haddleClick = async (e) => {
-        if (inputValue !== '') {
-            setAfficheMap(true);
-            const key = "aabad226ab52a9a2f0c635d062936c13";
-            try {
-                const data = await opencage.geocode({ q: inputValue, language: "fr" });
+    const handleChange = (event) => {
+        setCityName(event.target.value);
+    };
+
+    function geocodeCity(cityName) {
+        return opencage
+            .geocode({ q: cityName, language: 'fr', key: process.env.REACT_APP_OPENCAGE_API_KEY })
+            .then((data) => {
                 if (data.status.code === 200 && data.results.length > 0) {
                     const place = data.results[0];
                     const formatted = place.formatted;
@@ -26,19 +28,31 @@ export default function FormInscription() {
                     const total_results = data.total_results;
                     return { error, total_results };
                 }
-            } catch (error) {
-                console.log("Error", error.message);
+            })
+            .catch((error) => {
+                console.log('Error', error.message);
                 if (error.status.code === 402) {
-                    console.log("hit free trial daily limit");
-                    console.log("become a customer: https://opencagedata.com/pricing");
+                    console.log('hit free trial daily limit');
+                    console.log('become a customer: https://opencagedata.com/pricing');
                 }
                 return { error: error.message };
-            }
-        }
-    };
+            });
+    }
 
-    const handleChange = (event) => {
-        setInputValue(event.target.value);
+    const handleClick = () => {
+        if (cityName.trim() !== '') {
+            geocodeCity(cityName)
+                .then((result) => {
+                    if (result.geometry) {
+                        const { lat, lng } = result.geometry;
+                        setCoordinates({ lat, lng });
+                        setAfficheMap(true)
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     };
 
     return (
@@ -67,8 +81,8 @@ export default function FormInscription() {
                                             <p className="text-center pD " >Adresse/ Localisation</p>
                                         </div>
                                         <div className="row">
-                                            <div className="col"><input className="form-control" type="text" name="nom" placeholder="votre localisation" value={inputValue} onChange={handleChange} /></div>
-                                            <div className="col"><motion.button onClick={haddleClick} layout className="btn btn-primary child" type="button" whileHover={{ scale: 1.2 }}
+                                            <div className="col"><input className="form-control" type="text" name="nom" placeholder="votre localisation" value={cityName} onChange={handleChange} /></div>
+                                            <div className="col"><motion.button onClick={handleClick} layout className="btn btn-primary child" type="button" whileHover={{ scale: 1.2 }}
                                                 onHoverStart={e => { }}
                                                 onHoverEnd={e => { }}>+</motion.button></div>
                                         </div>
@@ -83,8 +97,11 @@ export default function FormInscription() {
                     </div>
                     <div className="col-md-6 col-lg-6 col-xl-4" style={{ marginTop: "200px" }} >
                         <div className="col-md-6 col-lg-6 col-xl-4">
+                            <div hidden>
+                                {afficheMap && <GoogleMap initialLongitude={coordinates.lng} initialLatitude={coordinates.lat} />}
+                            </div>
                             {/* Afficher la carte uniquement si afficheMap est vrai */}
-                            {afficheMap && <GoogleMap initialLongitude={47.5335333} initialLatitude={-18.9792134} />}
+                            {afficheMap && <GoogleMap initialLongitude={coordinates.lng} initialLatitude={coordinates.lat} />}
                         </div>
                     </div>
                 </div>

@@ -11,13 +11,13 @@ function LoginPage() {
 
     return (
         <div>
-            <WeatherComponent />
-            {/* <Header />
-            <FormConnex />
-            <FormInscription /> */}
-            {/* <GoogleMap initialLatitude={-18.9191141} initialLongitude={47.5243646} />
+            {/* <WeatherComponent />
+            <Header />
+            <FormConnex /> */}
+            <FormInscription />
 
-             */}
+
+
 
         </div>
     );
