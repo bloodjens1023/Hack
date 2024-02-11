@@ -1,0 +1,29 @@
+.corp {
+    text-align: center;
+}
+
+.dv1 {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.pD {
+    text-align: center;
+    font-size: 18px;
+    padding-top: 8px;
+}
+
+.postinsc {
+    width: 600px;
+}
+
+.btnCon {
+    backdrop-filter: blur(0px);
+    border-radius: 14px;
+}
+
+.check {
+    margin-right: 10px;
+}

@@ -1,6 +1,7 @@
 const express = require('express');
 
 const Client = require('./Entite/client');
+const Weather = require('./client/src/components/Weather')
 // Importer la fonction donne depuis database.js
 require('dotenv').config();
 const PORT = process.env.PORT || 4000;
@@ -11,6 +12,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 let cl = new Client()
+let w = new Weather();
 
 
 app.get('/api/bonjour', async (req, res) => {
