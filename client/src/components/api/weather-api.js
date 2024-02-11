@@ -45,16 +45,17 @@ function getTempsActuel(lat, lon, key) {
 }
 
 // Utilisation de la fonction
-geocodeCity("Esmia")
+geocodeCity("Andoharanofotsy")
   .then((result) => {
     console.log(result);
     if (result.geometry) {
       const lat = result.geometry.lat;
       const lon = result.geometry.lng;
-      getTempsActuel(lat, lon, key);
+      const coordinates = { lat, lon };
+      console.log(coordinates);
     }
   })
   .catch((error) => {
     console.log(error);
-    // Gérez l'erreur
+    
   });
