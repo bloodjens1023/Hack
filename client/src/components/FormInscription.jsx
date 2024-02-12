@@ -94,7 +94,7 @@ export default function FormInscription() {
 
 
     const [cityName, setCityName] = useState("");
-    const [afficheMap, setAfficheMap] = useState(false);
+    const [afficheMap, setAfficheMap] = useState(true)                                                                                                                                    );
     const [coordinates, setCoordinates] = useState({});
     const [mess, setMessage] = useState("");
     const [nom, setnom] = useState("")
@@ -148,20 +148,11 @@ export default function FormInscription() {
                     if (result.geometry) {
                         const { lat, lng } = result.geometry;
                         console.log(result.geometry);
-                        if (
-                            (lat <= -18.9343 && lat >= -19) ||
-                            (lng <= 47.7553 && lng >= 47.4333)
-                        ) {
-                            console.log("success");
-                            setMessage("success");
-                            setCoordinates({ lat, lng });
+                        console.log("success");
+                        setMessage("success");
+                        setCoordinates({ lat, lng });
 
-                            setAfficheMap(true);
-                        } else {
-                            setMessage("error");
-                            console.log("error");
-                            setAfficheMap(false);
-                        }
+                        setAfficheMap(true);
                     }
                 })
                 .catch((error) => {

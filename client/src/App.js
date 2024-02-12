@@ -10,7 +10,6 @@ import PageProfil from './pages/pageProfil';
 import LoginPage from './pages/Connexion';
 import ActuPage from './pages/ActuPage';
 import Accueil from './pages/Accueil';
-import Statistique from './pages/Statistique';
 
 // import PageConnection from './pages/Connexion';
 
@@ -18,7 +17,6 @@ function App() {
   return (
 
     <Routes>
-      <Route path='/stat' element={<Statistique />} />
       <Route path='/' element={<Accueil />} />
       <Route path='/actu' element={<ActuPage />} />
       <Route path='/connection' element={<LoginPage />} />
