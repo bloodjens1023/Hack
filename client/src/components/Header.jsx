@@ -1,6 +1,6 @@
 import logo from './img/products/logo.svg';
 import { motion } from "framer-motion"
-
+import { Link } from 'react-router-dom';
 export default function Header() {
     return (
         <div>
@@ -22,10 +22,14 @@ export default function Header() {
                             <li className="nav-item"></li>
                             <li className="nav-item"></li>
                         </ul>
-                        <motion.a whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }} className="btn btn-outline-primary shadow inscrire" role="button" data-bss-hover-animate="pulse" href="" style={{ marginRight: "20px" }}>S'inscrire</motion.a>
-                        <motion.a whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }} className="btn btn-primary shadow connecter" role="button" data-bss-hover-animate="pulse" href="signup.html" >Se connecter</motion.a>
+                        <Link to="/inscription">
+                            <motion.a whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }} className="btn btn-outline-primary shadow inscrire" role="button" data-bss-hover-animate="pulse" href="" style={{ marginRight: "20px" }}>S'inscrire</motion.a>
+                        </Link>
+                        <Link to="/connection">
+                            <motion.a whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }} className="btn btn-primary shadow connecter" role="button" data-bss-hover-animate="pulse" href="signup.html" >Se connecter</motion.a>
+                        </Link>
                     </div>
                 </div>
             </nav>

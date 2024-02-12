@@ -16,3 +16,5 @@ function getTempsActuel(lat, lon, key) {
     }
   });
 }
+
+getTempsActuel(48.8567, 2.3522, key);

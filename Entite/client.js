@@ -49,5 +49,16 @@ class Client {
         }
     }
 
+    async selection_publication() {
+        try {
+            const [rows, fields] = await pool.query("SELECT * FROM publication innert join user as c where fk_client = id_user");
+            console.log(rows);
+            return rows;
+        } catch (error) {
+            console.error("Erreur lors de l'exécution de la requête :", error);
+            return null;
+        }
+    }
+
 }
 module.exports = Client;

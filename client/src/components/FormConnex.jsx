@@ -1,7 +1,9 @@
 import logo from './img/products/image_conn.webp';
 import { motion } from "framer-motion"
 import React, { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 export default function FormConnex() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         pseudo: '',
         mot_de_passe: ''
@@ -30,6 +32,7 @@ export default function FormConnex() {
                 throw new Error('Erreur lors de la connexion');
             }
             setSuccess('Utilisateur connecté avec succès !');
+            navigate('/utilisateur')
             // Réinitialiser le formulaire après la soumission
             setFormData({
                 pseudo: '',

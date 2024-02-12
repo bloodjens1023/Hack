@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Header from '../components/Header';
+
 
 function SignUpPage() {
     const [formData, setFormData] = useState({
@@ -53,76 +55,80 @@ function SignUpPage() {
 
 
     return (
-        <div>
-            <h2>Inscription</h2>
-            <form onSubmit={handleSubmit}>
-                {error && <div style={{ color: 'red' }}>{error}</div>}
-                <label>
-                    Nom:
-                    <input
-                        type="text"
-                        name="nom"
-                        value={formData.nom}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    Prénom:
-                    <input
-                        type="text"
-                        name="prenom"
-                        value={formData.prenom}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    Localisation:
-                    <input
-                        type="text"
-                        name="localisation"
-                        value={formData.localisation}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    Numéro de CIN:
-                    <input
-                        type="text"
-                        name="cin"
-                        value={formData.cin}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    Lieu concerné:
-                    <input
-                        type="text"
-                        name="lieu_concerne"
-                        value={formData.lieu_concerne}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    Pseudonyme:
-                    <input
-                        type="text"
-                        name="pseudo"
-                        value={formData.pseudo}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    Mot de passe:
-                    <input
-                        type="password"
-                        name="mot_de_passe"
-                        value={formData.mot_de_passe}
-                        onChange={handleChange}
-                    />
-                </label>
-                <button type="submit">S'inscrire</button>
-            </form>
-        </div>
+        <>
+            <Header />
+            <div>
+
+                <h2>Inscription</h2>
+                <form onSubmit={handleSubmit}>
+                    {error && <div style={{ color: 'red' }}>{error}</div>}
+                    <label>
+                        Nom:
+                        <input
+                            type="text"
+                            name="nom"
+                            value={formData.nom}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
+                        Prénom:
+                        <input
+                            type="text"
+                            name="prenom"
+                            value={formData.prenom}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
+                        Localisation:
+                        <input
+                            type="text"
+                            name="localisation"
+                            value={formData.localisation}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
+                        Numéro de CIN:
+                        <input
+                            type="text"
+                            name="cin"
+                            value={formData.cin}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
+                        Lieu concerné:
+                        <input
+                            type="text"
+                            name="lieu_concerne"
+                            value={formData.lieu_concerne}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
+                        Pseudonyme:
+                        <input
+                            type="text"
+                            name="pseudo"
+                            value={formData.pseudo}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
+                        Mot de passe:
+                        <input
+                            type="password"
+                            name="mot_de_passe"
+                            value={formData.mot_de_passe}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <button type="submit">S'inscrire</button>
+                </form>
+            </div>
+        </>
     );
 
 }
